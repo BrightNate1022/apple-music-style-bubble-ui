@@ -34,9 +34,17 @@ con.query("SELECT Name FROM test", function (err, result) {
       fs.writeFile('myjsonfile.json', json, 'utf8', function (err, data){
           if(err) console.log("error",err);
       });
-      
+     
   });
-
+  con.query("SELECT Image FROM test", function (err, result) {
+    if (err) throw err;
+ 
+  var image = result;
+  var json = JSON.stringify(image);
+  module.exports = result; 
+  fs.writeFile('Img.json', json, 'utf8', function (err, data){
+      if(err) console.log("error",err);
   });
-
+  });
+});
 module.exports = con;

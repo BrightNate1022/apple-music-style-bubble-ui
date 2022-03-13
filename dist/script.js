@@ -1,35 +1,59 @@
-
+var img = [];
 var names = [];
 var obj = {};
+var obj2 = {};
 var test = "POP"
 
 var nodes = new vis.DataSet([
 
 ]);
-console.log("hello");
+
 
   $.ajax({url: "/myjsonfile.json",  success: function(Name){
   
    obj = Name;
-   for (let i=0;i<obj.length;i++)
+   for (let i=0;i<10;i++)
     {
     var namest= obj[i]
     names.push(namest.Name)
-     
+     nodes.add({label:names[i],id:i,shape: "circularImage", image:img[i]})
     console.log(namest.Name)
-    nodes.add({label:names[i]})
+    
+    console.log(nodes.get[0])
   } 
-  
-  console.log(names)  
+ 
+  console.log(obj)  
+  console.log(names)
   }}); 
+  
+
+
+
+  $.ajax({url: "Img.json", async:false, success: function(result,obj2){
+    obj2 = result
+    
+    for (let i=0;i<10;i++)
+     {
+     images= obj2[i]
+    img.push(images.Image)
+    
+
+   }    
+    
+    
+    
+  
+  
+}});
+   console.log(img)
+
+  
+  console.log("hello");
+
+    
 
   console.log("hello");
-  console.log(obj)
-  
-    
-  obj[0] = 
-  console.log("hello");
-console.log(nodes)
+console.log(nodes);
 
 var edges = new vis.DataSet();
 
@@ -40,7 +64,7 @@ var data = {
 };
 
 var options = {
-  nodes: {borderWidth:0,shape:"circle",color:{background:'#F92C55', highlight:{background:'#F92C55', border: '#F92C55'}},font:{color:'#fff'}},
+  nodes: {borderWidth:0, color:{background: "white"}, font:{color:'black'}},
   physics: {
     stabilization: false,
     minVelocity:  0.01,
@@ -69,4 +93,3 @@ container.on("mouse-wheel", function(event) {
   event.stopPropagation();
 });
 
-console.log("hello");
