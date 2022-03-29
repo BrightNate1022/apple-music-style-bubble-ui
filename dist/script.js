@@ -64,7 +64,7 @@ var data = {
 };
 
 var options = {
-  nodes: {borderWidth:0, color:{background: "white"}, font:{color:'black'}},
+  nodes: {borderWidth:1, color:{background: "white",border:"black"}, font:{color:'black'}},
   physics: {
     stabilization: false,
     minVelocity:  0.01,
@@ -77,16 +77,15 @@ var options = {
 };
 var network = new vis.Network(container, data, options);
 
-
-
-// Events
-network.on("click", function(e) {
-  if (e.nodes.length) {
-    var node = nodes.get(e.nodes[0]);
-    // Do something
-    nodes.update(node);
-  }
+network.on( 'click', function(properties) {
+  var ids = properties.nodes;
+  var clickedNodes = nodes.get(ids);
+  console.log(properties)
+  // var labels = clickedNodes[0["label"]]
+  alert("Clicked Genre " + clickedNodes[0].label);
 });
+
+
 
 container.on("mouse-wheel", function(event) {
   // prevents zooming with the mouse-wheel event
